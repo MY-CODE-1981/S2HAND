@@ -190,37 +190,37 @@ def main(base_path, set_name=None, writer = None):
             )
             train_loaders.append(train_loader0)
         train_loader = ConcatDataloader(train_loaders)
-    #if 'evaluation' in set_name:
-    val_loaders = []
-    for dat_name_val in args.val_datasets:
-        if dat_name_val == 'FreiHand':
-            val_queries = args.val_queries
-            base_path = args.freihand_base_path
-        elif dat_name_val == 'RHD':
-            val_queries = args.val_queries
-            base_path = args.rhd_base_path
-        elif dat_name_val == 'HO3D':
-            val_queries = args.val_queries
-            base_path = args.ho3d_base_path
-        val_dat = get_dataset(
-            dat_name_val,
-            'evaluation',
-            base_path,
-            queries = val_queries,
-            train = False,
-            #transform=transforms.Compose([transforms.Rescale(256),transforms.ToTensor()]))
-        )
-        print("Validation dataset size: {}".format(len(val_dat)))
-        val_loader = torch.utils.data.DataLoader(
-            val_dat,
-            batch_size=args.val_batch,
-            shuffle=False,
-            num_workers=args.num_workers,
-            pin_memory=True,
-            drop_last=False,
-        )
-        val_loaders.append(val_loader)
-    val_loader = ConcatDataloader(val_loaders)
+    if 'evaluation' in set_name:
+        val_loaders = []
+        for dat_name_val in args.val_datasets:
+            if dat_name_val == 'FreiHand':
+                val_queries = args.val_queries
+                base_path = args.freihand_base_path
+            elif dat_name_val == 'RHD':
+                val_queries = args.val_queries
+                base_path = args.rhd_base_path
+            elif dat_name_val == 'HO3D':
+                val_queries = args.val_queries
+                base_path = args.ho3d_base_path
+            val_dat = get_dataset(
+                dat_name_val,
+                'evaluation',
+                base_path,
+                queries = val_queries,
+                train = False,
+                #transform=transforms.Compose([transforms.Rescale(256),transforms.ToTensor()]))
+            )
+            print("Validation dataset size: {}".format(len(val_dat)))
+            val_loader = torch.utils.data.DataLoader(
+                val_dat,
+                batch_size=args.val_batch,
+                shuffle=False,
+                num_workers=args.num_workers,
+                pin_memory=True,
+                drop_last=False,
+            )
+            val_loaders.append(val_loader)
+        val_loader = ConcatDataloader(val_loaders)
 
     #current_epoch = 0
     if len(args.train_datasets) == 1:

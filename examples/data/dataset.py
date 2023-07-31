@@ -1940,7 +1940,7 @@ class HO3D:
             seq_list = os.listdir(os.path.join(self.base_path,'train'))
             self.open_2dj_list={}
             for seq_item in seq_list:
-                open_2dj_list = json_load(os.path.join(self.base_path,'openpose',seq_item,'detect.json'))
+                open_2dj_list = json_load(os.path.join(self.base_path,'train',seq_item,'rgb/detect.json'))
                 self.open_2dj_list[seq_item] = open_2dj_list
             #import pdb; pdb.set_trace()
             for_one_sub = False
@@ -1977,7 +1977,7 @@ class HO3D:
 
     def get_img(self, idx):
         [seq_name, image_name] = self.image_list[idx]
-        image_path = os.path.join(self.base_path, self.subfolder, seq_name, 'rgb', '{}.png'.format(image_name))
+        image_path = os.path.join(self.base_path, self.subfolder, seq_name, 'rgb/image', '{}.jpg'.format(image_name))
         img = Image.open(image_path).convert('RGB')
         #img = func_transforms.resize(img,64)
         #img = func_transforms.to_tensor(img).float()#[3,480,640]

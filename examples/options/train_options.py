@@ -158,20 +158,20 @@ def get_parser():
     parser.add_argument('--ho3d_base_path', type=str, default=None, help='Path to where the RHD dataset is located.')
 
     # For Obman
-    parser.add_argument('--base_path', type=str, default=None, help='Path to where the FreiHAND dataset is located.')
+    parser.add_argument('--base_path', type=str, default='/home/initial/workspace/S2HAND/outputs/openpose', help='Path to where the FreiHAND dataset is located.')
     #parser.add_argument('--out', type=str, default='/code/TextureHand/results/obman/pred.json', help='File to save the predictions.')
     #base_output_dir = '/code/TextureHand/results/freihand/3d'#rgb2hm#'/code/TextureHand/results/obman'
     
     #parser.add_argument('--out', type=str, default=pred_output, help='File to save the predictions.')
     parser.add_argument('--out', type=str, help='File to save the predictions.')
 
-    parser.add_argument('--base_out_path', type=str, default='/home/outputs/freihand/SSL/debug', help='File to save the predictions.')
+    parser.add_argument('--base_out_path', type=str, default='/home/initial/workspace/S2HAND/outputs/openpose/HO3D/HO3D_v3/HO3D_v3/train', help='File to save the predictions.')
     parser.add_argument('--image_size', type=int, default=224)#224
 
     parser.add_argument('--is_write_tb', type=bool, default=False)#224
     parser.add_argument('--writer_topic', type=str, default='/runs/debug/')
 
-    parser.add_argument('--config_json', type=str, default=None)
+    parser.add_argument('--config_json', type=str, default='examples/config/HO3D/SSL-shape.json')
     
     return parser
 
